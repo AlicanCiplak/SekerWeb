@@ -1,0 +1,38 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Duyuru>
+@{
+    ViewBag.Title = "DuyuruListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">İD</th>
+            <th scope="col">Konu</th>
+            <th scope="col">Duyuru</th>
+            <th scope="col">Tarih</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var duyuru in Model)
+        {
+        <tr>
+
+            <td>@duyuru.İD</td>
+            <td>@duyuru.Konu</td>
+            <td>@duyuru.Duyurular</td>
+            <td>@duyuru.Tarih</td>
+            <td><a href="/Yonetici/DuyuruSil/@duyuru.İD" class="btn btn-danger">Sil </a></td>
+            <td><a href="/Yonetici/DuyuruGetir/@duyuru.İD" class="btn btn-success">Güncelle </a></td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Yonetici/DuyuruEkle" class="btn btn-primary">Ekle</a>
+

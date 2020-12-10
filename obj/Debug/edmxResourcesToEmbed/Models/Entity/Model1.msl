@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DiyabetimModelStoreContainer" CdmEntityContainer="DiyabetimEntities">
+    <EntitySetMapping Name="DoktorHasta">
+      <EntityTypeMapping TypeName="DiyabetimModel.DoktorHasta">
+        <MappingFragment StoreEntitySet="DoktorHasta">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="DoktorİD" ColumnName="DoktorİD" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Duyuru">
+      <EntityTypeMapping TypeName="DiyabetimModel.Duyuru">
+        <MappingFragment StoreEntitySet="Duyuru">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="Duyurular" ColumnName="Duyurular" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hasta">
+      <EntityTypeMapping TypeName="DiyabetimModel.Hasta">
+        <MappingFragment StoreEntitySet="Hasta">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="TARİH" ColumnName="TARİH" />
+          <ScalarProperty Name="HekimİD" ColumnName="HekimİD" />
+          <ScalarProperty Name="TC" ColumnName="TC" />
+          <ScalarProperty Name="TelefonNumarası" ColumnName="TelefonNumarası" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hekim">
+      <EntityTypeMapping TypeName="DiyabetimModel.Hekim">
+        <MappingFragment StoreEntitySet="Hekim">
+          <ScalarProperty Name="İd" ColumnName="İd" />
+          <ScalarProperty Name="KullanıcıAd" ColumnName="KullanıcıAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Universite" ColumnName="Universite" />
+          <ScalarProperty Name="AkademikHayat" ColumnName="AkademikHayat" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="DiyabetimModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Kategoriler" ColumnName="Kategoriler" />
+          <ScalarProperty Name="AltİD" ColumnName="AltİD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marka">
+      <EntityTypeMapping TypeName="DiyabetimModel.Marka">
+        <MappingFragment StoreEntitySet="Marka">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MarkaAdı" ColumnName="MarkaAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DiyabetimModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urun">
+      <EntityTypeMapping TypeName="DiyabetimModel.Urun">
+        <MappingFragment StoreEntitySet="Urun">
+          <ScalarProperty Name="İd" ColumnName="İd" />
+          <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="KategoriİD" ColumnName="KategoriİD" />
+          <ScalarProperty Name="MarkaİD" ColumnName="MarkaİD" />
+          <ScalarProperty Name="Detay" ColumnName="Detay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yönetici">
+      <EntityTypeMapping TypeName="DiyabetimModel.Yönetici">
+        <MappingFragment StoreEntitySet="Yönetici">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

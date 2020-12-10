@@ -1,0 +1,25 @@
+﻿@model SekerWeb.Models.Entity.Kategori
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("KategoriGüncelle", "Kategori", FormMethod.Post))
+{
+    <div style="margin-bottom:15px">
+        <div class="form-group">
+            <input type="text" class="form-control" name="id" placeholder="id">
+            <label for="text">Kategori</label>
+            <input type="text" class="form-control" name="Kategoriler" placeholder="Kategori">
+            @*@Html.LabelFor(m => m.id, new { @class = "form control", placeholder = "" })
+        <br />
+        @Html.LabelFor(m => m.Kategoriler, new { @class = "form control", placeholder = "" })
+        @Html.TextBoxFor(m => m.Kategoriler, new { @class = "form control" })*@
+
+
+        </div>
+        <div>
+            <button class="btn-warning">Güncelle</button>
+        </div>
+    </div>
+}

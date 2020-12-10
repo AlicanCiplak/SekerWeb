@@ -1,0 +1,28 @@
+﻿@model SekerWeb.Models.Entity.Hasta
+@{
+    ViewBag.Title = "HastaEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div class="form-group">
+        <label for="text">Hoca</label>
+        <input type="text" class="form-control" name="AdSoyad" placeholder="İsim Soyisim">
+
+    </div>
+ 
+    <div class="form-group">
+        <label for="text">Sifre</label>
+        <input type="text" class="form-control" name="sifre" placeholder="Şifre">
+
+    </div>
+    <div class="form-group">
+        <label for="text">Ünvan</label>
+        <input type="text" class="form-control" name="Ünvan" placeholder="Ünvan">
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ders Ekle</button>
+</form>
+
+

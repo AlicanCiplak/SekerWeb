@@ -1,0 +1,40 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">URUN</th>
+            <th scope="col">FİYAT</th>
+            <th scope="col">KATEGORİ</th>
+            <th scope="col">MARKA</th>
+            <th scope="col">Sil</th>
+            <th scope="col">Güncelle</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urun in Model)
+        {
+        <tr>
+
+            <td>@urun.UrunAdı</td>
+            <td>@urun.Fiyat</td>
+            <td>@urun.Kategori.Kategoriler</td>
+            <td>@urun.Marka.MarkaAdı</td>
+            <td><a href="/Urun/UrunSil/@urun.İd" class="btn btn-danger">Sil </a></td>
+            <td><a href="#" class="btn btn-success">Güncelle </a></td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="#" class="btn btn-primary">Ekle</a>
+
+
+

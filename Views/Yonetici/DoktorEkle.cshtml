@@ -1,0 +1,28 @@
+﻿@model SekerWeb.Models.Entity.Duyuru
+@{
+    ViewBag.Title = "DoktorEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<form class="form-group" method="post">
+
+    <div class="form-group">
+        <label for="text">Konu</label>
+        <input type="text" class="form-control" name="AdSoyad" placeholder="İsim Soyisim">
+
+    </div>
+    <div class="form-group">
+        <label for="text">Üniversite</label>
+        <input type="text" class="form-control" name="Universite" placeholder="Universite">
+
+    </div>
+    <div class="form-group">
+        <label for="text">Akademik</label>
+        <input type="text" class="form-control" name="AkademikHayat" placeholder="Akademik">
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>
+

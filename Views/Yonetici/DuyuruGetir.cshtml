@@ -1,0 +1,27 @@
+﻿@model SekerWeb.Models.Entity.Duyuru
+@{
+    ViewBag.Title = "DuyuruGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using (Html.BeginForm("DuyuruGüncelle", "Yonetici", FormMethod.Post))
+{
+    <div style="margin-bottom:15px">
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.İD)
+            @Html.TextBoxFor(m => m.İD, new { @class = "form control" })
+            <br />
+            @Html.LabelFor(m => m.Konu, new { @class = "form control", placeholder = "" })
+            @Html.TextBoxFor(m => m.Konu, new { @class = "form control" })
+            <br />
+            @Html.LabelFor(m => m.Duyurular, new { @class = "form control", placeholder = "" })
+            @Html.TextBoxFor(m => m.Duyurular, new { @class = "form control" })
+            <br />
+            @Html.LabelFor(m => m.Tarih, new { @class = "form control", placeholder = "" })
+
+        </div>
+        <div>
+            <button class="btn-warning">Güncelle</button>
+        </div>
+    </div>
+}

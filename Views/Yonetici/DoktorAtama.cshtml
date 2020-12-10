@@ -1,0 +1,24 @@
+﻿@model SekerWeb.Models.Entity.DoktorHasta
+@{
+    ViewBag.Title = "DoktorAtama";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div class="form-group">
+        <label for="text">Hasta</label>
+        @Html.DropDownListFor(k => k.HastaİD, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form control" })
+
+    </div>
+    <div class="form-group">
+        <label for="text">Doktor</label>
+        @Html.DropDownListFor(k => k.DoktorİD, (List<SelectListItem>)ViewBag.dgr, new { @class = "form control" })
+
+    </div>
+   
+
+
+    <button type="submit" class="btn btn-primary">Ders Ekle</button>
+</form>
+
+

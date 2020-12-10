@@ -1,0 +1,35 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Hekim>
+@{
+    ViewBag.Title = "DoktorListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">AdSoyad</th>
+            <th scope="col">Universite</th>
+            <th scope="col">Akademi kHayat</th>
+          
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hekim in Model)
+        {
+            <tr>
+
+                <td>@hekim.AdSoyad</td>          
+                <td>@hekim.Universite</td>
+                <td>@hekim.AkademikHayat</td>
+                <td><a href="/Yonetici/DoktorSil/@hekim.İd" class="btn btn-danger">Sil </a></td>
+                <td><a href="#" class="btn btn-success">Güncelle </a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Yonetici/DoktorEkle" class="btn btn-primary">Ekle</a>
+
+

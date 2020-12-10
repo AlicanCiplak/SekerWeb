@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DiyabetimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DoktorHasta">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HastaİD" Type="int" />
+          <Property Name="DoktorİD" Type="int" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Duyuru">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Duyurular" Type="varchar" MaxLength="50" />
+          <Property Name="Konu" Type="varchar" MaxLength="50" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="TARİH" Type="date" />
+          <Property Name="HekimİD" Type="int" />
+          <Property Name="TC" Type="bigint" />
+          <Property Name="TelefonNumarası" Type="bigint" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Tip" Type="int" />
+          <Property Name="KullanıcıAdı" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hekim">
+          <Key>
+            <PropertyRef Name="İd" />
+          </Key>
+          <Property Name="İd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullanıcıAd" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+          <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="Universite" Type="varchar" MaxLength="50" />
+          <Property Name="AkademikHayat" Type="varchar" MaxLength="50" />
+          <Property Name="Foto" Type="image" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategoriler" Type="varchar" MaxLength="50" />
+          <Property Name="AltİD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarkaAdı" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="İd" />
+          </Key>
+          <Property Name="İd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunAdı" Type="varchar" MaxLength="50" />
+          <Property Name="Fiyat" Type="int" />
+          <Property Name="KategoriİD" Type="int" />
+          <Property Name="MarkaİD" Type="int" />
+          <Property Name="Detay" Type="text" />
+        </EntityType>
+        <EntityType Name="Yönetici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="KullanıcıAdı" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+          <Property Name="Yetki" Type="int" />
+        </EntityType>
+        <Association Name="FK_DoktorHasta_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="İD" />
+            </Principal>
+            <Dependent Role="DoktorHasta">
+              <PropertyRef Name="HastaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoktorHasta_Hekim">
+          <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+          <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hekim">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="DoktorHasta">
+              <PropertyRef Name="DoktorİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hasta_Hekim">
+          <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hekim">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="Hasta">
+              <PropertyRef Name="HekimİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="KategoriİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="MarkaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiyabetimModelStoreContainer">
+          <EntitySet Name="DoktorHasta" EntityType="Self.DoktorHasta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hekim" EntityType="Self.Hekim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yönetici" EntityType="Self.Yönetici" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DoktorHasta_Hasta" Association="Self.FK_DoktorHasta_Hasta">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="DoktorHasta" EntitySet="DoktorHasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoktorHasta_Hekim" Association="Self.FK_DoktorHasta_Hekim">
+            <End Role="Hekim" EntitySet="Hekim" />
+            <End Role="DoktorHasta" EntitySet="DoktorHasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hasta_Hekim" Association="Self.FK_Hasta_Hekim">
+            <End Role="Hekim" EntitySet="Hekim" />
+            <End Role="Hasta" EntitySet="Hasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiyabetimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DoktorHasta">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HastaİD" Type="Int32" />
+          <Property Name="DoktorİD" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_DoktorHasta_Hasta" FromRole="DoktorHasta" ToRole="Hasta" />
+          <NavigationProperty Name="Hekim" Relationship="Self.FK_DoktorHasta_Hekim" FromRole="DoktorHasta" ToRole="Hekim" />
+        </EntityType>
+        <EntityType Name="Duyuru">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Duyurular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TARİH" Type="DateTime" Precision="0" />
+          <Property Name="HekimİD" Type="Int32" />
+          <Property Name="TC" Type="Int64" />
+          <Property Name="TelefonNumarası" Type="Int64" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tip" Type="Int32" />
+          <Property Name="KullanıcıAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hasta" FromRole="Hasta" ToRole="DoktorHasta" />
+          <NavigationProperty Name="Hekim" Relationship="Self.FK_Hasta_Hekim" FromRole="Hasta" ToRole="Hekim" />
+        </EntityType>
+        <EntityType Name="Hekim">
+          <Key>
+            <PropertyRef Name="İd" />
+          </Key>
+          <Property Name="İd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullanıcıAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Universite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AkademikHayat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hekim" FromRole="Hekim" ToRole="DoktorHasta" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_Hasta_Hekim" FromRole="Hekim" ToRole="Hasta" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategoriler" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AltİD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Kategori" FromRole="Kategori" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarkaAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Marka" FromRole="Marka" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="İd" />
+          </Key>
+          <Property Name="İd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fiyat" Type="Int32" />
+          <Property Name="KategoriİD" Type="Int32" />
+          <Property Name="MarkaİD" Type="Int32" />
+          <Property Name="Detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
+          <NavigationProperty Name="Marka" Relationship="Self.FK_Urun_Marka" FromRole="Urun" ToRole="Marka" />
+        </EntityType>
+        <EntityType Name="Yönetici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KullanıcıAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Yetki" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_DoktorHasta_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="İD" />
+            </Principal>
+            <Dependent Role="DoktorHasta">
+              <PropertyRef Name="HastaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoktorHasta_Hekim">
+          <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+          <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hekim">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="DoktorHasta">
+              <PropertyRef Name="DoktorİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hasta_Hekim">
+          <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hekim">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="Hasta">
+              <PropertyRef Name="HekimİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="KategoriİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="MarkaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiyabetimEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DoktorHasta" EntityType="Self.DoktorHasta" />
+          <EntitySet Name="Duyuru" EntityType="Self.Duyuru" />
+          <EntitySet Name="Hasta" EntityType="Self.Hasta" />
+          <EntitySet Name="Hekim" EntityType="Self.Hekim" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" />
+          <EntitySet Name="Yönetici" EntityType="Self.Yönetici" />
+          <AssociationSet Name="FK_DoktorHasta_Hasta" Association="Self.FK_DoktorHasta_Hasta">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="DoktorHasta" EntitySet="DoktorHasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoktorHasta_Hekim" Association="Self.FK_DoktorHasta_Hekim">
+            <End Role="Hekim" EntitySet="Hekim" />
+            <End Role="DoktorHasta" EntitySet="DoktorHasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hasta_Hekim" Association="Self.FK_Hasta_Hekim">
+            <End Role="Hekim" EntitySet="Hekim" />
+            <End Role="Hasta" EntitySet="Hasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiyabetimModelStoreContainer" CdmEntityContainer="DiyabetimEntities">
+          <EntitySetMapping Name="DoktorHasta">
+            <EntityTypeMapping TypeName="DiyabetimModel.DoktorHasta">
+              <MappingFragment StoreEntitySet="DoktorHasta">
+                <ScalarProperty Name="İD" ColumnName="İD" />
+                <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+                <ScalarProperty Name="DoktorİD" ColumnName="DoktorİD" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyuru">
+            <EntityTypeMapping TypeName="DiyabetimModel.Duyuru">
+              <MappingFragment StoreEntitySet="Duyuru">
+                <ScalarProperty Name="İD" ColumnName="İD" />
+                <ScalarProperty Name="Duyurular" ColumnName="Duyurular" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hasta">
+            <EntityTypeMapping TypeName="DiyabetimModel.Hasta">
+              <MappingFragment StoreEntitySet="Hasta">
+                <ScalarProperty Name="İD" ColumnName="İD" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="TARİH" ColumnName="TARİH" />
+                <ScalarProperty Name="HekimİD" ColumnName="HekimİD" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="TelefonNumarası" ColumnName="TelefonNumarası" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hekim">
+            <EntityTypeMapping TypeName="DiyabetimModel.Hekim">
+              <MappingFragment StoreEntitySet="Hekim">
+                <ScalarProperty Name="İd" ColumnName="İd" />
+                <ScalarProperty Name="KullanıcıAd" ColumnName="KullanıcıAd" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Universite" ColumnName="Universite" />
+                <ScalarProperty Name="AkademikHayat" ColumnName="AkademikHayat" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori">
+            <EntityTypeMapping TypeName="DiyabetimModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Kategoriler" ColumnName="Kategoriler" />
+                <ScalarProperty Name="AltİD" ColumnName="AltİD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marka">
+            <EntityTypeMapping TypeName="DiyabetimModel.Marka">
+              <MappingFragment StoreEntitySet="Marka">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MarkaAdı" ColumnName="MarkaAdı" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DiyabetimModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urun">
+            <EntityTypeMapping TypeName="DiyabetimModel.Urun">
+              <MappingFragment StoreEntitySet="Urun">
+                <ScalarProperty Name="İd" ColumnName="İd" />
+                <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="KategoriİD" ColumnName="KategoriİD" />
+                <ScalarProperty Name="MarkaİD" ColumnName="MarkaİD" />
+                <ScalarProperty Name="Detay" ColumnName="Detay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yönetici">
+            <EntityTypeMapping TypeName="DiyabetimModel.Yönetici">
+              <MappingFragment StoreEntitySet="Yönetici">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

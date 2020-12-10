@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "YoneticiProfil";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Numara</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["YonericiİD"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">İsim</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["YoneticiAdSoyad"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Kullanıcı Adı</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["KullancıAdı"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Sifre</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["YoneticiSifre"].ToString()
+        </div>
+    </div>
+</div>
+<td><a href="#" class="btn btn-success">Güncelle </a></td>
+
+
+
+
