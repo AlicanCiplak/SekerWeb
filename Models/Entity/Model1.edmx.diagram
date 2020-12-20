@@ -4,19 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7449a8009c8c4bf48c065a194755da38" Name="Diagram1">
-        <EntityTypeShape EntityType="DiyabetimModel.DoktorHasta" Width="1.5" PointX="7.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Duyuru" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Hasta" Width="1.5" PointX="5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Hekim" Width="1.5" PointX="2.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Kategori" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Marka" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Urun" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Yönetici" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="e6cb514e15134417a8317b3dca7d6adc" Name="Diagram1">
+        <EntityTypeShape EntityType="DiyabetimModel.DoktorHasta" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Duyuru" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Hasta" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Hekim" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.İletisim" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Kategori" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Marka" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Sekerlerim" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Urun" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Yönetici" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <AssociationConnector Association="DiyabetimModel.FK_DoktorHasta_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_DoktorHasta_Hekim" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Hasta_Hekim" ManuallyRouted="false" />
+        <AssociationConnector Association="DiyabetimModel.FK_Sekerlerim_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Urun_Kategori" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Urun_Marka" ManuallyRouted="false" />
       </Diagram>

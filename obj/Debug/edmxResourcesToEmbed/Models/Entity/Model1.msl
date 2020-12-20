@@ -50,6 +50,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="İletisim">
+      <EntityTypeMapping TypeName="DiyabetimModel.İletisim">
+        <MappingFragment StoreEntitySet="İletisim">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="İcerik" ColumnName="İcerik" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Kategori">
       <EntityTypeMapping TypeName="DiyabetimModel.Kategori">
         <MappingFragment StoreEntitySet="Kategori">
@@ -64,6 +74,22 @@
         <MappingFragment StoreEntitySet="Marka">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="MarkaAdı" ColumnName="MarkaAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sekerlerim">
+      <EntityTypeMapping TypeName="DiyabetimModel.Sekerlerim">
+        <MappingFragment StoreEntitySet="Sekerlerim">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="SabahAclik" ColumnName="SabahAclik" />
+          <ScalarProperty Name="SabahTokluk" ColumnName="SabahTokluk" />
+          <ScalarProperty Name="OglenAclik" ColumnName="OglenAclik" />
+          <ScalarProperty Name="OglenTokluk" ColumnName="OglenTokluk" />
+          <ScalarProperty Name="AksamAclık" ColumnName="AksamAclık" />
+          <ScalarProperty Name="AksamTokluk" ColumnName="AksamTokluk" />
+          <ScalarProperty Name="Gece" ColumnName="Gece" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

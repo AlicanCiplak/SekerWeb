@@ -185,5 +185,10 @@ namespace SekerWeb.Controllers
             return RedirectToAction("AtamaListele", "Yonetici");
             
         }
+        public ActionResult İletisim()
+        {
+            var ilet = db.İletisim.ToList();
+            return View(ilet);
+        }
     }
     }

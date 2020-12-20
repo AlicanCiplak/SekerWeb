@@ -1,0 +1,53 @@
+﻿@using SekerWeb.Models.Entity
+@model List<İletisim>
+@{
+    ViewBag.Title = "İletisim";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">İD</th>
+            <th scope="col">Konu</th>
+            <th scope="col">TARİH</th>
+            <th scope="col">İcerik</th>
+            <th scope="col">SİL</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var iletisim in Model)
+        {
+        <tr>
+
+            <td>@iletisim.İD</td>
+            <td>@iletisim.Konu</td>
+            <td>@iletisim.Tarih</td>
+            <td><a href="#" class="btn btn-success" data-toggle="modal" data-target="#Modal1">Detay</a></td>
+            <td><a href="#" class="btn btn-danger">Sil </a></td>
+
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                @foreach (var iletisim in Model)
+                {
+                    <div class="modal-body">
+                        <label>@iletisim.İcerik</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

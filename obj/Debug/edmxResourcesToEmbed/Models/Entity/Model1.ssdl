@@ -45,6 +45,15 @@
     <Property Name="AkademikHayat" Type="varchar" MaxLength="50" />
     <Property Name="Foto" Type="image" />
   </EntityType>
+  <EntityType Name="İletisim">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Konu" Type="varchar" MaxLength="50" />
+    <Property Name="İcerik" Type="text" />
+    <Property Name="Tarih" Type="date" />
+  </EntityType>
   <EntityType Name="Kategori">
     <Key>
       <PropertyRef Name="id" />
@@ -59,6 +68,21 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MarkaAdı" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sekerlerim">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HastaİD" Type="int" />
+    <Property Name="SabahAclik" Type="int" />
+    <Property Name="SabahTokluk" Type="int" />
+    <Property Name="OglenAclik" Type="int" />
+    <Property Name="OglenTokluk" Type="int" />
+    <Property Name="AksamAclık" Type="int" />
+    <Property Name="AksamTokluk" Type="int" />
+    <Property Name="Gece" Type="int" />
+    <Property Name="Tarih" Type="date" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -127,6 +151,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sekerlerim_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="Sekerlerim" Type="Self.Sekerlerim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="Sekerlerim">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Urun_Kategori">
     <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
     <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
@@ -156,8 +192,10 @@
     <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hekim" EntityType="Self.Hekim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="İletisim" EntityType="Self.İletisim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Yönetici" EntityType="Self.Yönetici" Schema="dbo" store:Type="Tables" />
@@ -172,6 +210,10 @@
     <AssociationSet Name="FK_Hasta_Hekim" Association="Self.FK_Hasta_Hekim">
       <End Role="Hekim" EntitySet="Hekim" />
       <End Role="Hasta" EntitySet="Hasta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Sekerlerim" EntitySet="Sekerlerim" />
     </AssociationSet>
     <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
       <End Role="Kategori" EntitySet="Kategori" />

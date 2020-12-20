@@ -18,6 +18,7 @@ namespace SekerWeb.Models.Entity
         public Hasta()
         {
             this.DoktorHasta = new HashSet<DoktorHasta>();
+            this.Sekerlerim = new HashSet<Sekerlerim>();
         }
     
         public int İD { get; set; }
@@ -34,5 +35,7 @@ namespace SekerWeb.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoktorHasta> DoktorHasta { get; set; }
         public virtual Hekim Hekim { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sekerlerim> Sekerlerim { get; set; }
     }
 }

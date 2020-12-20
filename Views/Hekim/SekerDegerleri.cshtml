@@ -1,0 +1,44 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Sekerlerim>
+@{
+    ViewBag.Title = "SekerDegerleri";
+    Layout = "~/Views/Shared/HekimLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col">Sabah Aç</th>
+            <th scope="col">Sabah Tok</th>
+            <th scope="col">Öğlen Aç</th>
+            <th scope="col">Öğlen Tok</th>
+            <th scope="col">Aksam Aç</th>
+            <th scope="col">Aksam Tok</th>
+            <th scope="col">Gece</th>
+            <th scope="col">Tarih</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var seker in Model)
+        {
+        <tr>
+
+           
+            <td>@seker.SabahAclik</td>
+            <td>@seker.SabahTokluk</td>
+            <td>@seker.OglenAclik</td>
+            <td>@seker.OglenTokluk</td>
+            <td>@seker.AksamAclık</td>
+            <td>@seker.AksamTokluk</td>
+            <td>@seker.Gece</td>
+            <td>@seker.Tarih</td>
+            
+
+
+        </tr>
+        }
+    </tbody>
+</table>
