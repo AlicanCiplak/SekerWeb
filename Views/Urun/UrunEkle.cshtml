@@ -1,0 +1,39 @@
+﻿@model SekerWeb.Models.Entity.Urun
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("UrunEkle", "Urun", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label for="text">Bölüm</label>
+        @Html.DropDownListFor(k => k.KategoriİD, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form control" })
+
+    </div>
+    <div class="form-group">
+        <label for="text">Bölüm</label>
+        @Html.DropDownListFor(k => k.MarkaİD, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form control" })
+
+    </div>
+    <div class="form-group">
+        <label for="text">ÜRÜN</label>
+        <input type="text" class="form-control" name="UrunAdı" placeholder="Ürün">
+
+    </div>
+    <div class="form-group">
+        <label for="text">Fiyat</label>
+        <input type="text" class="form-control" name="Fiyat" placeholder="Fiyat">
+
+    </div>
+    <div class="form-group">
+        <label for="text">Detay</label>
+        <input type="text" class="form-control" name="Detay" placeholder="Detay">
+
+    </div>
+    <input type="file" value="Resim" name="Resim" />
+
+    <button type="submit" class="btn btn-primary"> Ekle</button>
+
+}
+

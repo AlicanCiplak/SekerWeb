@@ -1,0 +1,51 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Besin>
+@{
+    ViewBag.Title = "BesinListele";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col">Kahvaltı</th>
+            <th scope="col">Ara Öğün</th>
+            <th scope="col">Öğlen</th>
+            <th scope="col">Ara Öğün</th>
+            <th scope="col">Aksam</th>
+            <th scope="col">Ara Öğün</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Sil</th>
+            <th scope="col">Düzenle</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var liste in Model)
+        {
+            <tr>
+
+
+                <td>@liste.Kahvaltı</td>
+                <td>@liste.AraOgun</td>
+                <td>@liste.Oglen</td>
+                <td>@liste.OgleAraOgun</td>
+                <td>@liste.Aksam</td>
+                <td>@liste.AksamAraOgun</td>
+                <td>@Convert.ToDateTime(liste.Tarih).ToString("dd/MM/yyyy")</td>
+                <td><a href="#" class="btn btn-success">Sil </a></td>
+                <td><a href="#" class="btn btn-secondary">Düzenle</a></td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+<td><a href="/Hasta/BesinEkle" class="btn btn-primary">Ekle</a></td>
+
+
+
+

@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DiyabetimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Besin">
+    <Key>
+      <PropertyRef Name="iD" />
+    </Key>
+    <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kahvaltı" Type="text" />
+    <Property Name="AraOgun" Type="text" />
+    <Property Name="Oglen" Type="text" />
+    <Property Name="OgleAraOgun" Type="text" />
+    <Property Name="Aksam" Type="text" />
+    <Property Name="AksamAraOgun" Type="text" />
+    <Property Name="HastaİD" Type="int" />
+    <Property Name="Tarih" Type="datetime" />
+  </EntityType>
   <EntityType Name="DoktorHasta">
     <Key>
       <PropertyRef Name="İD" />
@@ -94,6 +108,16 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="TestAtama">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HastaİD" Type="int" />
+    <Property Name="Referans" Type="text" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="DoktorİD" Type="int" />
+  </EntityType>
   <EntityType Name="Urun">
     <Key>
       <PropertyRef Name="İd" />
@@ -104,6 +128,8 @@
     <Property Name="KategoriİD" Type="int" />
     <Property Name="MarkaİD" Type="int" />
     <Property Name="Detay" Type="text" />
+    <Property Name="Resim" Type="varchar(max)" />
+    <Property Name="IMAGE" Type="image" />
   </EntityType>
   <EntityType Name="Yönetici">
     <Key>
@@ -115,6 +141,18 @@
     <Property Name="Sifre" Type="varchar" MaxLength="50" />
     <Property Name="Yetki" Type="int" />
   </EntityType>
+  <Association Name="FK_Besin_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="Besin" Type="Self.Besin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="Besin">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DoktorHasta_Hasta">
     <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
     <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
@@ -163,6 +201,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TestAtama_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="TestAtama">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestAtama_Hekim">
+    <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+    <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hekim">
+        <PropertyRef Name="İd" />
+      </Principal>
+      <Dependent Role="TestAtama">
+        <PropertyRef Name="DoktorİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Urun_Kategori">
     <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
     <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
@@ -188,6 +250,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DiyabetimModelStoreContainer">
+    <EntitySet Name="Besin" EntityType="Self.Besin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DoktorHasta" EntityType="Self.DoktorHasta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
@@ -197,8 +260,13 @@
     <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestAtama" EntityType="Self.TestAtama" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Yönetici" EntityType="Self.Yönetici" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Besin_Hasta" Association="Self.FK_Besin_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Besin" EntitySet="Besin" />
+    </AssociationSet>
     <AssociationSet Name="FK_DoktorHasta_Hasta" Association="Self.FK_DoktorHasta_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="DoktorHasta" EntitySet="DoktorHasta" />
@@ -214,6 +282,14 @@
     <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="Sekerlerim" EntitySet="Sekerlerim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestAtama_Hasta" Association="Self.FK_TestAtama_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="TestAtama" EntitySet="TestAtama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestAtama_Hekim" Association="Self.FK_TestAtama_Hekim">
+      <End Role="Hekim" EntitySet="Hekim" />
+      <End Role="TestAtama" EntitySet="TestAtama" />
     </AssociationSet>
     <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
       <End Role="Kategori" EntitySet="Kategori" />

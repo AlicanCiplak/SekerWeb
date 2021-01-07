@@ -10,7 +10,7 @@
             <th scope="col">URUN</th>
             <th scope="col">FİYAT</th>
             <th scope="col">KATEGORİ</th>
-            <th scope="col">MARKA</th>
+            <th scope="col">MARKA</th>          
             <th scope="col">Sil</th>
             <th scope="col">Güncelle</th>
 
@@ -24,9 +24,10 @@
 
             <td>@urun.UrunAdı</td>
             <td>@urun.Fiyat</td>
-            <td>@urun.Kategori.Kategoriler</td>
-            <td>@urun.Marka.MarkaAdı</td>
-            <td><a href="/Urun/UrunSil/@urun.İd" class="btn btn-danger">Sil </a></td>
+            <td>@urun.KategoriİD</td>U
+            <td>@urun.MarkaİD</td>
+            <td><img src="@urun.Resim"></td>
+          <td> <a href="/Urun/UrunSil/@urun.İd" class="btn btn-danger">Sil </a></td>
             <td><a href="#" class="btn btn-success">Güncelle </a></td>
 
 
@@ -34,7 +35,7 @@
         }
     </tbody>
 </table>
-<a href="#" class="btn btn-primary">Ekle</a>
+<a href="/Urun/UrunEkle" class="btn btn-primary">Ekle</a>
 
 
 

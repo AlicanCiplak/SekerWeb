@@ -25,6 +25,7 @@ namespace SekerWeb.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Besin> Besin { get; set; }
         public virtual DbSet<DoktorHasta> DoktorHasta { get; set; }
         public virtual DbSet<Duyuru> Duyuru { get; set; }
         public virtual DbSet<Hasta> Hasta { get; set; }
@@ -34,6 +35,7 @@ namespace SekerWeb.Models.Entity
         public virtual DbSet<Marka> Marka { get; set; }
         public virtual DbSet<Sekerlerim> Sekerlerim { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TestAtama> TestAtama { get; set; }
         public virtual DbSet<Urun> Urun { get; set; }
         public virtual DbSet<Yönetici> Yönetici { get; set; }
     }

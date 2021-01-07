@@ -1,0 +1,50 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Sekerlerim>
+@{
+    ViewBag.Title = "SekerListeleme";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col">Sabah Aç</th>
+            <th scope="col">Sabah Tok</th>
+            <th scope="col">Öğlen Aç</th>
+            <th scope="col">Öğlen Tok</th>
+            <th scope="col">Aksam Aç</th>
+            <th scope="col">Aksam Tok</th>
+            <th scope="col">Gece</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Sil</th>
+            <th scope="col">Düzenle</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var liste in Model)
+        {
+        <tr>
+
+
+            <td>@liste.SabahAclik</td>
+            <td>@liste.SabahTokluk</td>
+            <td>@liste.OglenAclik</td>
+            <td>@liste.OglenTokluk</td>
+            <td>@liste.AksamAclık</td>
+            <td>@liste.AksamTokluk</td>
+            <td>@liste.Gece</td>
+            <td>@Convert.ToDateTime(liste.Tarih).ToString("dd/MM/yyyy")</td>
+            <td><a href="#" class="btn btn-success">Sil </a></td>
+            <td><a href="#" class="btn btn-secondary">Düzenle</a></td>
+
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+<td><a href="/Hasta/SekerEkle" class="btn btn-primary">Ekle</a></td>
+

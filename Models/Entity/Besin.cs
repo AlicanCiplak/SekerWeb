@@ -12,18 +12,18 @@ namespace SekerWeb.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Urun
+    public partial class Besin
     {
-        public int İd { get; set; }
-        public string UrunAdı { get; set; }
-        public Nullable<int> Fiyat { get; set; }
-        public Nullable<int> KategoriİD { get; set; }
-        public Nullable<int> MarkaİD { get; set; }
-        public string Detay { get; set; }
-        public string Resim { get; set; }
-        public byte[] IMAGE { get; set; }
+        public int iD { get; set; }
+        public string Kahvaltı { get; set; }
+        public string AraOgun { get; set; }
+        public string Oglen { get; set; }
+        public string OgleAraOgun { get; set; }
+        public string Aksam { get; set; }
+        public string AksamAraOgun { get; set; }
+        public Nullable<int> HastaİD { get; set; }
+        public Nullable<System.DateTime> Tarih { get; set; }
     
-        public virtual Kategori Kategori { get; set; }
-        public virtual Marka Marka { get; set; }
+        public virtual Hasta Hasta { get; set; }
     }
 }

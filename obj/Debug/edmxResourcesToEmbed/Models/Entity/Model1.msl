@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DiyabetimModelStoreContainer" CdmEntityContainer="DiyabetimEntities">
+    <EntitySetMapping Name="Besin">
+      <EntityTypeMapping TypeName="DiyabetimModel.Besin">
+        <MappingFragment StoreEntitySet="Besin">
+          <ScalarProperty Name="iD" ColumnName="iD" />
+          <ScalarProperty Name="Kahvaltı" ColumnName="Kahvaltı" />
+          <ScalarProperty Name="AraOgun" ColumnName="AraOgun" />
+          <ScalarProperty Name="Oglen" ColumnName="Oglen" />
+          <ScalarProperty Name="OgleAraOgun" ColumnName="OgleAraOgun" />
+          <ScalarProperty Name="Aksam" ColumnName="Aksam" />
+          <ScalarProperty Name="AksamAraOgun" ColumnName="AksamAraOgun" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DoktorHasta">
       <EntityTypeMapping TypeName="DiyabetimModel.DoktorHasta">
         <MappingFragment StoreEntitySet="DoktorHasta">
@@ -104,9 +119,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TestAtama">
+      <EntityTypeMapping TypeName="DiyabetimModel.TestAtama">
+        <MappingFragment StoreEntitySet="TestAtama">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="Referans" ColumnName="Referans" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="DoktorİD" ColumnName="DoktorİD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Urun">
       <EntityTypeMapping TypeName="DiyabetimModel.Urun">
         <MappingFragment StoreEntitySet="Urun">
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
           <ScalarProperty Name="İd" ColumnName="İd" />
           <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
           <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />

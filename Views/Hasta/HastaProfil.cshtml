@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "HastaProfil";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
+}
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Numara</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["HastaİD"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">İsim</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["HastaAdSoyad"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Kullanıcı Adı</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["KullancıAdı"].ToString()
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Sifre</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            @Session["Sifre"].ToString()
+        </div>
+    </div>
+</div>
+
+<td><a href="#" class="btn btn-success">Güncelle </a></td>

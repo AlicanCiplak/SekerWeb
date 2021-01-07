@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DiyabetimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Besin">
+    <Key>
+      <PropertyRef Name="iD" />
+    </Key>
+    <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kahvaltı" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AraOgun" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Oglen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OgleAraOgun" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Aksam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AksamAraOgun" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HastaİD" Type="Int32" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Hasta" Relationship="Self.FK_Besin_Hasta" FromRole="Besin" ToRole="Hasta" />
+  </EntityType>
   <EntityType Name="DoktorHasta">
     <Key>
       <PropertyRef Name="İD" />
@@ -34,9 +49,11 @@
     <Property Name="Tip" Type="Int32" />
     <Property Name="KullanıcıAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Besin" Relationship="Self.FK_Besin_Hasta" FromRole="Hasta" ToRole="Besin" />
     <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hasta" FromRole="Hasta" ToRole="DoktorHasta" />
     <NavigationProperty Name="Hekim" Relationship="Self.FK_Hasta_Hekim" FromRole="Hasta" ToRole="Hekim" />
     <NavigationProperty Name="Sekerlerim" Relationship="Self.FK_Sekerlerim_Hasta" FromRole="Hasta" ToRole="Sekerlerim" />
+    <NavigationProperty Name="TestAtama" Relationship="Self.FK_TestAtama_Hasta" FromRole="Hasta" ToRole="TestAtama" />
   </EntityType>
   <EntityType Name="Hekim">
     <Key>
@@ -51,6 +68,7 @@
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hekim" FromRole="Hekim" ToRole="DoktorHasta" />
     <NavigationProperty Name="Hasta" Relationship="Self.FK_Hasta_Hekim" FromRole="Hekim" ToRole="Hasta" />
+    <NavigationProperty Name="TestAtama" Relationship="Self.FK_TestAtama_Hekim" FromRole="Hekim" ToRole="TestAtama" />
   </EntityType>
   <EntityType Name="İletisim">
     <Key>
@@ -104,6 +122,18 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="TestAtama">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HastaİD" Type="Int32" />
+    <Property Name="Referans" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+    <Property Name="DoktorİD" Type="Int32" />
+    <NavigationProperty Name="Hasta" Relationship="Self.FK_TestAtama_Hasta" FromRole="TestAtama" ToRole="Hasta" />
+    <NavigationProperty Name="Hekim" Relationship="Self.FK_TestAtama_Hekim" FromRole="TestAtama" ToRole="Hekim" />
+  </EntityType>
   <EntityType Name="Urun">
     <Key>
       <PropertyRef Name="İd" />
@@ -116,6 +146,8 @@
     <Property Name="Detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
     <NavigationProperty Name="Marka" Relationship="Self.FK_Urun_Marka" FromRole="Urun" ToRole="Marka" />
+    <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Yönetici">
     <Key>
@@ -127,6 +159,18 @@
     <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Yetki" Type="Int32" />
   </EntityType>
+  <Association Name="FK_Besin_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="Besin" Type="Self.Besin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="Besin">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DoktorHasta_Hasta">
     <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
     <End Role="DoktorHasta" Type="Self.DoktorHasta" Multiplicity="*" />
@@ -175,6 +219,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TestAtama_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="TestAtama">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestAtama_Hekim">
+    <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+    <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hekim">
+        <PropertyRef Name="İd" />
+      </Principal>
+      <Dependent Role="TestAtama">
+        <PropertyRef Name="DoktorİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Urun_Kategori">
     <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
     <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
@@ -200,6 +268,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DiyabetimEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Besin" EntityType="Self.Besin" />
     <EntitySet Name="DoktorHasta" EntityType="Self.DoktorHasta" />
     <EntitySet Name="Duyuru" EntityType="Self.Duyuru" />
     <EntitySet Name="Hasta" EntityType="Self.Hasta" />
@@ -209,8 +278,13 @@
     <EntitySet Name="Marka" EntityType="Self.Marka" />
     <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TestAtama" EntityType="Self.TestAtama" />
     <EntitySet Name="Urun" EntityType="Self.Urun" />
     <EntitySet Name="Yönetici" EntityType="Self.Yönetici" />
+    <AssociationSet Name="FK_Besin_Hasta" Association="Self.FK_Besin_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Besin" EntitySet="Besin" />
+    </AssociationSet>
     <AssociationSet Name="FK_DoktorHasta_Hasta" Association="Self.FK_DoktorHasta_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="DoktorHasta" EntitySet="DoktorHasta" />
@@ -226,6 +300,14 @@
     <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="Sekerlerim" EntitySet="Sekerlerim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestAtama_Hasta" Association="Self.FK_TestAtama_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="TestAtama" EntitySet="TestAtama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestAtama_Hekim" Association="Self.FK_TestAtama_Hekim">
+      <End Role="Hekim" EntitySet="Hekim" />
+      <End Role="TestAtama" EntitySet="TestAtama" />
     </AssociationSet>
     <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
       <End Role="Kategori" EntitySet="Kategori" />

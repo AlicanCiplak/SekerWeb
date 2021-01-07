@@ -61,7 +61,17 @@ namespace SekerWeb.Controllers
             var seker = db.Sekerlerim.Where(x => x.HastaİD == id).OrderByDescending(x=>x.İD).ToList();
             return View(seker);
         }
-    
+        public ActionResult Beslenme(int id)
+        {
+            var bes = db.Besin.Where(x => x.HastaİD == id).OrderByDescending(x => x.iD).ToList();
+            return View(bes);
+        }
 
+        public ActionResult TestListele(int id)
+        {
+            var test = db.TestAtama.Where(x => x.HastaİD == id).OrderByDescending(x => x.İD).ToList();
+            return View(test);
+        }
+        
     }
 }

@@ -1,0 +1,46 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Besin>
+@{
+    ViewBag.Title = "Beslenme";
+    Layout = "~/Views/Shared/HekimLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col">Sabah </th>
+            <th scope="col">Ara Öğün</th>
+            <th scope="col">Öğlen </th>
+            <th scope="col">Ara Öğün</th>
+            <th scope="col">Aksam Aç</th>
+            <th scope="col">Aksam Tok</th>
+            <th scope="col">Gece</th>
+            <th scope="col">Tarih</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bes in Model)
+        {
+            <tr>
+
+
+              
+                <td>@bes.Kahvaltı</td>
+                <td>@bes.AraOgun</td>
+                <td>@bes.Oglen</td>
+                <td>@bes.OgleAraOgun</td>
+                <td>@bes.Aksam</td>
+                <td>@bes.AksamAraOgun</td>
+                <td>@Convert.ToDateTime(bes.Tarih).ToString("dd/MM/yyyy")</td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

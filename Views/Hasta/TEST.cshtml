@@ -1,0 +1,40 @@
+﻿@using SekerWeb.Models.Entity
+@model List<TestAtama>
+@{
+    ViewBag.Title = "TEST";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col">İsim </th>
+            <th scope="col">TEST</th>
+            <th scope="col">TARİH</th>
+            <th scope="col">Sonuç Yükle</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var test in Model)
+        {
+        <tr>
+
+
+
+            <td>@test.Hasta.AdSoyad</td>
+            <td>@test.Referans</td>
+            <td>@Convert.ToDateTime(test.Tarih).ToString("dd/MM/yyyy")</td>
+            <td><a href="#" class="btn btn-primary">Sonuç Yükle</a></td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

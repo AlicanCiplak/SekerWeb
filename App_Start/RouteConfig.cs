@@ -16,7 +16,7 @@ namespace SekerWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Yonetici", action = "YoneticiGiris", id = UrlParameter.Optional }
             );
         }
     }
