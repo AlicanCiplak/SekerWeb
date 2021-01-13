@@ -95,7 +95,81 @@ namespace SekerWeb.Controllers
             var test = db.TestAtama.Where(x => x.HastaİD == testlistele).ToList();
             return View(test);
         }
-        
 
+        public ActionResult UrunListe()
+        {
+            var urun = db.Urun.ToList();
+            return View(urun);
+        }
+        public ActionResult SepeteEkle(int id)
+        {
+            var urun = db.Urun.Find(id);
+            var dene = db.Sepetim.Count(x => x.UrunİD == id);
+            if (dene == 0)
+            {
+                Sepetim sepet = new Sepetim();
+                sepet.HastaİD = (int)Session["HastaİD"];
+                sepet.UrunİD = id;
+                sepet.Adet = 1;
+                sepet.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            
+                //db.Sepetim.Add(sepet);
+                //db.SaveChanges();
+
+
+                sepet.ToplamFiyat = sepet.Adet * urun.Fiyat; 
+                db.Sepetim.Add(sepet);
+                db.SaveChanges();
+                //var tutar = db.Sepetim.Where(x => x.İD == sepet.İD).Sum(x => x.Urun.Fiyat);
+                //tutar = tutar * sepet.Adet;
+                //ViewBag.TOPLAM = tutar;
+                return RedirectToAction("UrunListe");
+            }
+            else
+            {
+                return RedirectToAction("UrunListe");
+            }
+        }
+        public ActionResult Sepetim()
+        {
+            var hastaİD = (int)Session["HastaİD"];
+            var sepet = db.Sepetim.Where(x => x.HastaİD == hastaİD).ToList();
+
+            return View(sepet);
+        }
+
+        public ActionResult Arti(int id)
+        {
+            var arti = db.Sepetim.Find(id);
+            arti.Adet++;
+            db.SaveChanges();
+            //Session["ToplamFiyat"] =arti.Adet*arti.Urun.Fiyat ;
+            return RedirectToAction("Sepetim");
+        }
+        public ActionResult Azalt(int id)
+        {
+            var arti = db.Sepetim.Find(id);
+            if (arti.Adet == 0 )
+            {
+                db.Sepetim.Remove(arti);
+                db.SaveChanges();
+                return RedirectToAction("sepetim");
+            }
+            else
+            {
+                arti.Adet--;
+                db.SaveChanges();
+                //Session["ToplamFiyat1"] = arti.Adet * arti.Urun.Fiyat;
+                return RedirectToAction("Sepetim");
+            }
+        }
+        public ActionResult SepetSil(int id)
+        {
+            var sepet = db.Sepetim.Find(id);
+            db.Sepetim.Remove(sepet);
+            db.SaveChanges();
+            return RedirectToAction("Sepetim");
+        }
+      
     }
 }

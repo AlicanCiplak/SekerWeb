@@ -108,6 +108,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sepetim">
+      <EntityTypeMapping TypeName="DiyabetimModel.Sepetim">
+        <MappingFragment StoreEntitySet="Sepetim">
+          <ScalarProperty Name="ToplamFiyat" ColumnName="ToplamFiyat" />
+          <ScalarProperty Name="Adet" ColumnName="Adet" />
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="UrunİD" ColumnName="UrunİD" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="DiyabetimModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -133,14 +145,14 @@
     <EntitySetMapping Name="Urun">
       <EntityTypeMapping TypeName="DiyabetimModel.Urun">
         <MappingFragment StoreEntitySet="Urun">
-          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
-          <ScalarProperty Name="Resim" ColumnName="Resim" />
           <ScalarProperty Name="İd" ColumnName="İd" />
           <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
           <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
           <ScalarProperty Name="KategoriİD" ColumnName="KategoriİD" />
           <ScalarProperty Name="MarkaİD" ColumnName="MarkaİD" />
           <ScalarProperty Name="Detay" ColumnName="Detay" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

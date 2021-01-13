@@ -179,6 +179,9 @@
     <Compile Include="Models\Entity\Sekerlerim.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Sepetim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -205,6 +208,7 @@
     <Content Include="CSS\main.css" />
     <Content Include="CSS\StyleSheet1.css" />
     <Content Include="CSS\StyleSheet2.css" />
+    <Content Include="CSS\StyleSheet3.css" />
     <Content Include="CSS\util.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -324,7 +328,8 @@
     <Content Include="Views\Hekim\TestListele.cshtml" />
     <Content Include="Views\Hasta\TEST.cshtml" />
     <Content Include="Views\Urun\UrunEkle.cshtml" />
-    <Content Include="Views\Urun\deneme.cshtml" />
+    <Content Include="Views\Hasta\UrunListe.cshtml" />
+    <Content Include="Views\Hasta\Sepetim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

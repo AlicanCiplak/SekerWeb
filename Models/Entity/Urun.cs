@@ -14,6 +14,12 @@ namespace SekerWeb.Models.Entity
     
     public partial class Urun
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Urun()
+        {
+            this.Sepetim = new HashSet<Sepetim>();
+        }
+    
         public int İd { get; set; }
         public string UrunAdı { get; set; }
         public Nullable<int> Fiyat { get; set; }
@@ -25,5 +31,7 @@ namespace SekerWeb.Models.Entity
     
         public virtual Kategori Kategori { get; set; }
         public virtual Marka Marka { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sepetim> Sepetim { get; set; }
     }
 }

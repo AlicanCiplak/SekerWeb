@@ -1,9 +1,10 @@
 ﻿@using SekerWeb.Models.Entity
 @model List<Urun>
 @{
-    ViewBag.Title = "deneme";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "UrunListe";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
 }
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,35 +13,37 @@
 
 <div class="container">
 
-    <br>  <p class="text-center" <a href="http://bootstrap-ecommerce.com/"</a></p>
-    <hr>
+    @*<br>  <p class="text-center" <a href="http://bootstrap-ecommerce.com/"</a></p>
+    <hr>*@
 
 
 
 
     <div class="row">
-           @foreach (var urun in Model)
-           {
-    <div class="col-md-4">
-        <figure class="card card-product">
-            <div class="img-wrap"><img src="@Url.Content(urun.Resim)"></div>
-            <figcaption class="info-wrap">
-                <h4 class="title">Another name of item</h4>
-                <p class="desc">Some small description goes here</p>
-                <div class="rating-wrap">
-                    <div class="label-rating">132 reviews</div>
-                    <div class="label-rating">154 orders </div>
-                </div> <!-- rating-wrap.// -->
-            </figcaption>
-            <div class="bottom-wrap">
-                <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
-                <div class="price-wrap h5">
-                    <span class="price-new">$1280</span> <del class="price-old">$1980</del>
-                </div> <!-- price-wrap.// -->
-            </div> <!-- bottom-wrap.// -->
-        </figure>
-    </div>
-           }<!-- col // -->
+        @foreach (var urun in Model)
+        {
+            <div class="col-md-4">
+                <figure class="card card-product">
+                    <div class="img-wrap"><img src="@Url.Content(urun.Resim)"></div>
+                    <figcaption class="info-wrap">
+                        <h4 class="title">Baslik</h4>
+                        <p class="desc">@urun.Detay</p>
+                        <p class="desc">@urun.Marka.MarkaAdı</p>
+                        <p class="desc">@urun.Kategori.Kategoriler</p>
+                        <div class="rating-wrap">
+                            <div class="label-rating"></div>
+                            <div class="label-rating"></div>
+                        </div> <!-- rating-wrap.// -->
+                    </figcaption>
+                    <div class="bottom-wrap">
+                        <a href="/Hasta/SepeteEkle/@urun.İd" class="btn btn-sm btn-primary float-right">Sepete Ekle</a>
+                        <div class="price-wrap h5">
+                            <span class="price-new">@urun.Fiyat$</span> <del class="price-old"></del>
+                        </div> <!-- price-wrap.// -->
+                    </div> <!-- bottom-wrap.// -->
+                </figure>
+            </div>
+        }<!-- col // -->
         <!--<div class="col-md-4">
         <figure class="card card-product">
             <div class="img-wrap"><img src="https://s9.postimg.org/ojb106167/image.jpg"> </div>
@@ -53,15 +56,15 @@
                 </div>-->
         <!-- rating-wrap.// -->
         <!--</figcaption>
-    <div class="bottom-wrap">
-        <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
-        <div class="price-wrap h5">
-            <span class="price-new">$1280</span> <del class="price-old">$1980</del>
-        </div>-->
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
+            <div class="price-wrap h5">
+                <span class="price-new">$1280</span> <del class="price-old">$1980</del>
+            </div>-->
         <!-- price-wrap.// -->
         <!--</div>--> <!-- bottom-wrap.// -->
         <!--</figure>
-    </div>-->
+        </div>-->
         <!-- col // -->
         <!--<div class="col-md-4">
         <figure class="card card-product">
@@ -75,15 +78,15 @@
                 </div>-->
         <!-- rating-wrap.// -->
         <!--</figcaption>
-    <div class="bottom-wrap">
-        <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
-        <div class="price-wrap h5">
-            <span class="price-new">$1280</span> <del class="price-old">$1980</del>
-        </div>-->
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
+            <div class="price-wrap h5">
+                <span class="price-new">$1280</span> <del class="price-old">$1980</del>
+            </div>-->
         <!-- price-wrap.// -->
         <!--</div>--> <!-- bottom-wrap.// -->
         <!--</figure>
-    </div>-->
+        </div>-->
         <!-- col // -->
     </div> <!-- row.// -->
 
@@ -92,7 +95,7 @@
 </div>
 <!--container.//-->
 
-<br>
+@*<br>
 <br>
 <br>
 <article class="bg-secondary mb-3">
@@ -110,4 +113,5 @@
         </p>
     </div>
     <br><br><br>
-</article>
+</article>*@
+

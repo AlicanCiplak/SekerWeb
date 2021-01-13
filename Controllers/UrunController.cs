@@ -95,10 +95,6 @@ namespace SekerWeb.Controllers
             return RedirectToAction("Index");
 
         }
-        public ActionResult deneme()
-        {
-            var deneme = db.Urun.ToList();
-            return View(deneme);
-        }
+      
     }
 }

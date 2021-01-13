@@ -103,6 +103,17 @@
           <Property Name="Gece" Type="int" />
           <Property Name="Tarih" Type="date" />
         </EntityType>
+        <EntityType Name="Sepetim">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HastaİD" Type="int" />
+          <Property Name="UrunİD" Type="int" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="ToplamFiyat" Type="int" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -206,6 +217,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sepetim_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="Sepetim" Type="Self.Sepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="İD" />
+            </Principal>
+            <Dependent Role="Sepetim">
+              <PropertyRef Name="HastaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepetim_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Sepetim" Type="Self.Sepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="Sepetim">
+              <PropertyRef Name="UrunİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TestAtama_Hasta">
           <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
           <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
@@ -264,6 +299,7 @@
           <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sepetim" EntityType="Self.Sepetim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestAtama" EntityType="Self.TestAtama" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
@@ -287,6 +323,14 @@
           <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
             <End Role="Hasta" EntitySet="Hasta" />
             <End Role="Sekerlerim" EntitySet="Sekerlerim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepetim_Hasta" Association="Self.FK_Sepetim_Hasta">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="Sepetim" EntitySet="Sepetim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepetim_Urun" Association="Self.FK_Sepetim_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Sepetim" EntitySet="Sepetim" />
           </AssociationSet>
           <AssociationSet Name="FK_TestAtama_Hasta" Association="Self.FK_TestAtama_Hasta">
             <End Role="Hasta" EntitySet="Hasta" />
@@ -362,6 +406,7 @@
           <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hasta" FromRole="Hasta" ToRole="DoktorHasta" />
           <NavigationProperty Name="Hekim" Relationship="Self.FK_Hasta_Hekim" FromRole="Hasta" ToRole="Hekim" />
           <NavigationProperty Name="Sekerlerim" Relationship="Self.FK_Sekerlerim_Hasta" FromRole="Hasta" ToRole="Sekerlerim" />
+          <NavigationProperty Name="Sepetim" Relationship="Self.FK_Sepetim_Hasta" FromRole="Hasta" ToRole="Sepetim" />
           <NavigationProperty Name="TestAtama" Relationship="Self.FK_TestAtama_Hasta" FromRole="Hasta" ToRole="TestAtama" />
         </EntityType>
         <EntityType Name="Hekim">
@@ -421,6 +466,19 @@
           <Property Name="Tarih" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Hasta" Relationship="Self.FK_Sekerlerim_Hasta" FromRole="Sekerlerim" ToRole="Hasta" />
         </EntityType>
+        <EntityType Name="Sepetim">
+          <Key>
+            <PropertyRef Name="İD" />
+          </Key>
+          <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HastaİD" Type="Int32" />
+          <Property Name="UrunİD" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_Sepetim_Hasta" FromRole="Sepetim" ToRole="Hasta" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Sepetim_Urun" FromRole="Sepetim" ToRole="Urun" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="ToplamFiyat" Type="Int32" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -453,10 +511,11 @@
           <Property Name="KategoriİD" Type="Int32" />
           <Property Name="MarkaİD" Type="Int32" />
           <Property Name="Detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
-          <NavigationProperty Name="Marka" Relationship="Self.FK_Urun_Marka" FromRole="Urun" ToRole="Marka" />
           <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
+          <NavigationProperty Name="Marka" Relationship="Self.FK_Urun_Marka" FromRole="Urun" ToRole="Marka" />
+          <NavigationProperty Name="Sepetim" Relationship="Self.FK_Sepetim_Urun" FromRole="Urun" ToRole="Sepetim" />
         </EntityType>
         <EntityType Name="Yönetici">
           <Key>
@@ -528,6 +587,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sepetim_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="Sepetim" Type="Self.Sepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="İD" />
+            </Principal>
+            <Dependent Role="Sepetim">
+              <PropertyRef Name="HastaİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TestAtama_Hasta">
           <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
           <End Role="TestAtama" Type="Self.TestAtama" Multiplicity="*" />
@@ -576,6 +647,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sepetim_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Sepetim" Type="Self.Sepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="İd" />
+            </Principal>
+            <Dependent Role="Sepetim">
+              <PropertyRef Name="UrunİD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DiyabetimEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Besin" EntityType="Self.Besin" />
           <EntitySet Name="DoktorHasta" EntityType="Self.DoktorHasta" />
@@ -586,6 +669,7 @@
           <EntitySet Name="Kategori" EntityType="Self.Kategori" />
           <EntitySet Name="Marka" EntityType="Self.Marka" />
           <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" />
+          <EntitySet Name="Sepetim" EntityType="Self.Sepetim" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TestAtama" EntityType="Self.TestAtama" />
           <EntitySet Name="Urun" EntityType="Self.Urun" />
@@ -610,6 +694,10 @@
             <End Role="Hasta" EntitySet="Hasta" />
             <End Role="Sekerlerim" EntitySet="Sekerlerim" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sepetim_Hasta" Association="Self.FK_Sepetim_Hasta">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="Sepetim" EntitySet="Sepetim" />
+          </AssociationSet>
           <AssociationSet Name="FK_TestAtama_Hasta" Association="Self.FK_TestAtama_Hasta">
             <End Role="Hasta" EntitySet="Hasta" />
             <End Role="TestAtama" EntitySet="TestAtama" />
@@ -625,6 +713,10 @@
           <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
             <End Role="Marka" EntitySet="Marka" />
             <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepetim_Urun" Association="Self.FK_Sepetim_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Sepetim" EntitySet="Sepetim" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -740,6 +832,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sepetim">
+            <EntityTypeMapping TypeName="DiyabetimModel.Sepetim">
+              <MappingFragment StoreEntitySet="Sepetim">
+                <ScalarProperty Name="ToplamFiyat" ColumnName="ToplamFiyat" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="İD" ColumnName="İD" />
+                <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+                <ScalarProperty Name="UrunİD" ColumnName="UrunİD" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DiyabetimModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -765,14 +869,14 @@
           <EntitySetMapping Name="Urun">
             <EntityTypeMapping TypeName="DiyabetimModel.Urun">
               <MappingFragment StoreEntitySet="Urun">
-                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
-                <ScalarProperty Name="Resim" ColumnName="Resim" />
                 <ScalarProperty Name="İd" ColumnName="İd" />
                 <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
                 <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
                 <ScalarProperty Name="KategoriİD" ColumnName="KategoriİD" />
                 <ScalarProperty Name="MarkaİD" ColumnName="MarkaİD" />
                 <ScalarProperty Name="Detay" ColumnName="Detay" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

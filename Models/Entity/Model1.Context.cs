@@ -34,6 +34,7 @@ namespace SekerWeb.Models.Entity
         public virtual DbSet<Kategori> Kategori { get; set; }
         public virtual DbSet<Marka> Marka { get; set; }
         public virtual DbSet<Sekerlerim> Sekerlerim { get; set; }
+        public virtual DbSet<Sepetim> Sepetim { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TestAtama> TestAtama { get; set; }
         public virtual DbSet<Urun> Urun { get; set; }

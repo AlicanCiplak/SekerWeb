@@ -4,29 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="505405cb989845abb51fd70599bf68b3" Name="Diagram1">
-        <EntityTypeShape EntityType="DiyabetimModel.Besin" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.DoktorHasta" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Duyuru" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Hasta" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Hekim" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.İletisim" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Kategori" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Marka" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Sekerlerim" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.TestAtama" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Urun" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiyabetimModel.Yönetici" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="6aed5d8a88674e43ad7c5c179960f4a2" Name="Diagram1">
+        <EntityTypeShape EntityType="DiyabetimModel.Besin" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.DoktorHasta" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Duyuru" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Hasta" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Hekim" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.İletisim" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Kategori" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Marka" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Sekerlerim" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Sepetim" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.TestAtama" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Urun" Width="1.5" PointX="6" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyabetimModel.Yönetici" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DiyabetimModel.FK_Besin_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_DoktorHasta_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_DoktorHasta_Hekim" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Hasta_Hekim" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Sekerlerim_Hasta" ManuallyRouted="false" />
+        <AssociationConnector Association="DiyabetimModel.FK_Sepetim_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_TestAtama_Hasta" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_TestAtama_Hekim" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Urun_Kategori" ManuallyRouted="false" />
         <AssociationConnector Association="DiyabetimModel.FK_Urun_Marka" ManuallyRouted="false" />
+        <AssociationConnector Association="DiyabetimModel.FK_Sepetim_Urun" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
