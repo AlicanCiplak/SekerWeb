@@ -133,6 +133,8 @@ namespace SekerWeb.Controllers
         public ActionResult Sepetim()
         {
             var hastaİD = (int)Session["HastaİD"];
+            var tutar = db.Sepetim.Where(x => x.HastaİD == hastaİD).Sum(x => x.ToplamFiyat);
+            ViewBag.tutar = tutar;
             var sepet = db.Sepetim.Where(x => x.HastaİD == hastaİD).ToList();
 
             return View(sepet);
@@ -142,6 +144,7 @@ namespace SekerWeb.Controllers
         {
             var arti = db.Sepetim.Find(id);
             arti.Adet++;
+            arti.ToplamFiyat = arti.Adet * arti.Urun.Fiyat;
             db.SaveChanges();
             //Session["ToplamFiyat"] =arti.Adet*arti.Urun.Fiyat ;
             return RedirectToAction("Sepetim");
@@ -158,6 +161,7 @@ namespace SekerWeb.Controllers
             else
             {
                 arti.Adet--;
+                arti.ToplamFiyat = arti.Adet * arti.Urun.Fiyat;
                 db.SaveChanges();
                 //Session["ToplamFiyat1"] = arti.Adet * arti.Urun.Fiyat;
                 return RedirectToAction("Sepetim");
@@ -170,6 +174,10 @@ namespace SekerWeb.Controllers
             db.SaveChanges();
             return RedirectToAction("Sepetim");
         }
-      
+      public ActionResult UrunDetay(int id)
+        {
+            var urun = db.Urun.Where(x=>x.İd==id).ToList();
+            return View(urun);
+        }
     }
 }

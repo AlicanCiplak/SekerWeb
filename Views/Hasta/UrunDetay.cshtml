@@ -1,0 +1,101 @@
+﻿@using SekerWeb.Models.Entity
+@model List<Urun>
+@{
+    ViewBag.Title = "UrunDetay";
+    Layout = "~/Views/Shared/HastaLayout.cshtml";
+}
+
+<link href="~/CSS/StyleSheet4.css" rel="stylesheet" />
+<link href="~/CSS/StyleSheet5.css" rel="stylesheet" />
+<div class="container bootdey">
+    <div class="col-md-12">
+        @foreach (var urun in Model)
+        {
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="pro-img-details">
+                            <img src="@Url.Content(urun.Resim)" alt="">
+                        </div>
+                        <div class="pro-img-list">
+                            @*<a href="#">
+                                <img src="https://via.placeholder.com/115x100/87CEFA/000000" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
+                            </a>*@
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="pro-d-title">
+                            <a href="#" class="">
+                                Leopard Shirt Dress
+                            </a>
+                        </h4>
+                        <p>
+                            Praesent ac condimentum felis. Nulla at nisl orci, at dignissim dolor, The best product descriptions address your ideal buyer directly and personally. The best product descriptions address your ideal buyer directly and personally.
+                        </p>
+                        <div class="product_meta">
+                            <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">Jackets</a>, <a rel="tag" href="#">Men</a>, <a rel="tag" href="#">Shirts</a>, <a rel="tag" href="#">T-shirt</a>.</span>
+                            <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="#">mens</a>, <a rel="tag" href="#">womens</a>.</span>
+                        </div>
+                        <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="quantiy" placeholder="1" class="form-control quantity">
+                        </div>
+                        <p>
+                            <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        }
+        </div>
+  </div>
+
+<div class="container justify-content-center mt-5 border-left border-right">
+    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2">
+            <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18"><span class="text2">Martha</span></div>
+                <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4">3</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2">
+            <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span class="text2">Curtis</span></div>
+                <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4">3</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2">
+            <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div><img src="https://i.imgur.com/gishFbz.png" width="18" height="18"><span class="text2">Beth</span></div>
+                <div><span class="text3 text3o">Upvoted</span><span class="thumbup"><i class="fa fa-thumbs-up thumbupo"></i></span><span class="text4 text4i">1</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center py-2 pb-3">
+        <div class="second py-2 px-2">
+            <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span class="text2">Curtis</span></div>
+                <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4 text4o">1</span></div>
+            </div>
+        </div>
+    </div>
+</div>
