@@ -92,6 +92,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Mesaj">
+      <EntityTypeMapping TypeName="DiyabetimModel.Mesaj">
+        <MappingFragment StoreEntitySet="Mesaj">
+          <ScalarProperty Name="İD" ColumnName="İD" />
+          <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
+          <ScalarProperty Name="HekimİD" ColumnName="HekimİD" />
+          <ScalarProperty Name="Gonderen" ColumnName="Gonderen" />
+          <ScalarProperty Name="Mesaj1" ColumnName="Mesaj" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Sekerlerim">
       <EntityTypeMapping TypeName="DiyabetimModel.Sekerlerim">
         <MappingFragment StoreEntitySet="Sekerlerim">
@@ -111,12 +123,12 @@
     <EntitySetMapping Name="Sepetim">
       <EntityTypeMapping TypeName="DiyabetimModel.Sepetim">
         <MappingFragment StoreEntitySet="Sepetim">
-          <ScalarProperty Name="ToplamFiyat" ColumnName="ToplamFiyat" />
-          <ScalarProperty Name="Adet" ColumnName="Adet" />
           <ScalarProperty Name="İD" ColumnName="İD" />
           <ScalarProperty Name="HastaİD" ColumnName="HastaİD" />
           <ScalarProperty Name="UrunİD" ColumnName="UrunİD" />
           <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Adet" ColumnName="Adet" />
+          <ScalarProperty Name="ToplamFiyat" ColumnName="ToplamFiyat" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

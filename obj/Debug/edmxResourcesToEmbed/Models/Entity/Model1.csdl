@@ -52,6 +52,7 @@
     <NavigationProperty Name="Besin" Relationship="Self.FK_Besin_Hasta" FromRole="Hasta" ToRole="Besin" />
     <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hasta" FromRole="Hasta" ToRole="DoktorHasta" />
     <NavigationProperty Name="Hekim" Relationship="Self.FK_Hasta_Hekim" FromRole="Hasta" ToRole="Hekim" />
+    <NavigationProperty Name="Mesaj" Relationship="Self.FK_Mesaj_Hasta" FromRole="Hasta" ToRole="Mesaj" />
     <NavigationProperty Name="Sekerlerim" Relationship="Self.FK_Sekerlerim_Hasta" FromRole="Hasta" ToRole="Sekerlerim" />
     <NavigationProperty Name="Sepetim" Relationship="Self.FK_Sepetim_Hasta" FromRole="Hasta" ToRole="Sepetim" />
     <NavigationProperty Name="TestAtama" Relationship="Self.FK_TestAtama_Hasta" FromRole="Hasta" ToRole="TestAtama" />
@@ -69,6 +70,7 @@
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="DoktorHasta" Relationship="Self.FK_DoktorHasta_Hekim" FromRole="Hekim" ToRole="DoktorHasta" />
     <NavigationProperty Name="Hasta" Relationship="Self.FK_Hasta_Hekim" FromRole="Hekim" ToRole="Hasta" />
+    <NavigationProperty Name="Mesaj" Relationship="Self.FK_Mesaj_Hekim" FromRole="Hekim" ToRole="Mesaj" />
     <NavigationProperty Name="TestAtama" Relationship="Self.FK_TestAtama_Hekim" FromRole="Hekim" ToRole="TestAtama" />
   </EntityType>
   <EntityType Name="İletisim">
@@ -97,6 +99,19 @@
     <Property Name="MarkaAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Marka" FromRole="Marka" ToRole="Urun" />
   </EntityType>
+  <EntityType Name="Mesaj">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HastaİD" Type="Int32" />
+    <Property Name="HekimİD" Type="Int32" />
+    <Property Name="Gonderen" Type="Int32" />
+    <Property Name="Mesaj1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Hasta" Relationship="Self.FK_Mesaj_Hasta" FromRole="Mesaj" ToRole="Hasta" />
+    <NavigationProperty Name="Hekim" Relationship="Self.FK_Mesaj_Hekim" FromRole="Mesaj" ToRole="Hekim" />
+  </EntityType>
   <EntityType Name="Sekerlerim">
     <Key>
       <PropertyRef Name="İD" />
@@ -121,10 +136,10 @@
     <Property Name="HastaİD" Type="Int32" />
     <Property Name="UrunİD" Type="Int32" />
     <Property Name="Tarih" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Hasta" Relationship="Self.FK_Sepetim_Hasta" FromRole="Sepetim" ToRole="Hasta" />
-    <NavigationProperty Name="Urun" Relationship="Self.FK_Sepetim_Urun" FromRole="Sepetim" ToRole="Urun" />
     <Property Name="Adet" Type="Int32" />
     <Property Name="ToplamFiyat" Type="Int32" />
+    <NavigationProperty Name="Hasta" Relationship="Self.FK_Sepetim_Hasta" FromRole="Sepetim" ToRole="Hasta" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_Sepetim_Urun" FromRole="Sepetim" ToRole="Urun" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -222,6 +237,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mesaj_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="Mesaj">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sekerlerim_Hasta">
     <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
     <End Role="Sekerlerim" Type="Self.Sekerlerim" Multiplicity="*" />
@@ -255,6 +282,18 @@
       </Principal>
       <Dependent Role="TestAtama">
         <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mesaj_Hekim">
+    <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+    <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hekim">
+        <PropertyRef Name="İd" />
+      </Principal>
+      <Dependent Role="Mesaj">
+        <PropertyRef Name="HekimİD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -315,6 +354,7 @@
     <EntitySet Name="İletisim" EntityType="Self.İletisim" />
     <EntitySet Name="Kategori" EntityType="Self.Kategori" />
     <EntitySet Name="Marka" EntityType="Self.Marka" />
+    <EntitySet Name="Mesaj" EntityType="Self.Mesaj" />
     <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" />
     <EntitySet Name="Sepetim" EntityType="Self.Sepetim" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -337,6 +377,10 @@
       <End Role="Hekim" EntitySet="Hekim" />
       <End Role="Hasta" EntitySet="Hasta" />
     </AssociationSet>
+    <AssociationSet Name="FK_Mesaj_Hasta" Association="Self.FK_Mesaj_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Mesaj" EntitySet="Mesaj" />
+    </AssociationSet>
     <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="Sekerlerim" EntitySet="Sekerlerim" />
@@ -348,6 +392,10 @@
     <AssociationSet Name="FK_TestAtama_Hasta" Association="Self.FK_TestAtama_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />
       <End Role="TestAtama" EntitySet="TestAtama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mesaj_Hekim" Association="Self.FK_Mesaj_Hekim">
+      <End Role="Hekim" EntitySet="Hekim" />
+      <End Role="Mesaj" EntitySet="Mesaj" />
     </AssociationSet>
     <AssociationSet Name="FK_TestAtama_Hekim" Association="Self.FK_TestAtama_Hekim">
       <End Role="Hekim" EntitySet="Hekim" />

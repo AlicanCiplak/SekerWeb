@@ -72,6 +72,28 @@ namespace SekerWeb.Controllers
             var test = db.TestAtama.Where(x => x.HastaİD == id).OrderByDescending(x => x.İD).ToList();
             return View(test);
         }
-        
+        public ActionResult HastaİDAl(int id)
+        {
+            var hasta = db.Hasta.Find(id);
+            Session["HastaiD"] = hasta.İD;
+            return RedirectToAction("Mesaj");
+        }
+        [HttpGet]
+        public ActionResult Mesaj()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Mesaj(Mesaj m)
+        {
+           var hekimİD=(int)Session["HekimİD"];
+           var hastaİD= (int)Session["HastaiD"];
+            m.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            m.HekimİD = hekimİD;
+            m.Gonderen = hekimİD;
+            db.Mesaj.Add(m);
+            db.SaveChanges();
+            return View();
+        }
     }
 }

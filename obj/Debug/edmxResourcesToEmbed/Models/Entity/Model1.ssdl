@@ -83,6 +83,17 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MarkaAdı" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Mesaj">
+    <Key>
+      <PropertyRef Name="İD" />
+    </Key>
+    <Property Name="İD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HastaİD" Type="int" />
+    <Property Name="HekimİD" Type="int" />
+    <Property Name="Gonderen" Type="int" />
+    <Property Name="Mesaj" Type="text" />
+    <Property Name="Tarih" Type="date" />
+  </EntityType>
   <EntityType Name="Sekerlerim">
     <Key>
       <PropertyRef Name="İD" />
@@ -200,6 +211,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mesaj_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+    <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="İD" />
+      </Principal>
+      <Dependent Role="Mesaj">
+        <PropertyRef Name="HastaİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mesaj_Hekim">
+    <End Role="Hekim" Type="Self.Hekim" Multiplicity="0..1" />
+    <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hekim">
+        <PropertyRef Name="İd" />
+      </Principal>
+      <Dependent Role="Mesaj">
+        <PropertyRef Name="HekimİD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sekerlerim_Hasta">
     <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
     <End Role="Sekerlerim" Type="Self.Sekerlerim" Multiplicity="*" />
@@ -293,6 +328,7 @@
     <EntitySet Name="İletisim" EntityType="Self.İletisim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mesaj" EntityType="Self.Mesaj" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sekerlerim" EntityType="Self.Sekerlerim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sepetim" EntityType="Self.Sepetim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -314,6 +350,14 @@
     <AssociationSet Name="FK_Hasta_Hekim" Association="Self.FK_Hasta_Hekim">
       <End Role="Hekim" EntitySet="Hekim" />
       <End Role="Hasta" EntitySet="Hasta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mesaj_Hasta" Association="Self.FK_Mesaj_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Mesaj" EntitySet="Mesaj" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mesaj_Hekim" Association="Self.FK_Mesaj_Hekim">
+      <End Role="Hekim" EntitySet="Hekim" />
+      <End Role="Mesaj" EntitySet="Mesaj" />
     </AssociationSet>
     <AssociationSet Name="FK_Sekerlerim_Hasta" Association="Self.FK_Sekerlerim_Hasta">
       <End Role="Hasta" EntitySet="Hasta" />

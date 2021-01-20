@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Mesaj";
+    Layout = "~/Views/Shared/HekimLayout.cshtml";
+}
+@using (Html.BeginForm("Mesaj", "Hekim", FormMethod.Post))
+{
+    <form class="form-group" method="post">
+        <div class="form-group">
+            <label for="text">Mesaj</label>
+            <input type="text" class="form-control" name="Mesaj" placeholder="Mesaj">
+
+        </div>
+
+        <button type="submit" class="btn btn-danger">GÖNDER</button>
+    </form>
+
+}
