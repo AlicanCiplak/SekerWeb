@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HastaController.cs" />
     <Compile Include="Controllers\HekimController.cs" />
+    <Compile Include="Controllers\HemoglobinA1C1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
@@ -214,6 +215,7 @@
     <Content Include="CSS\StyleSheet3.css" />
     <Content Include="CSS\StyleSheet4.css" />
     <Content Include="CSS\StyleSheet5.css" />
+    <Content Include="CSS\StyleSheet6.css" />
     <Content Include="CSS\util.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -341,6 +343,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
+    <Folder Include="Views\HemoglobinA1C1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

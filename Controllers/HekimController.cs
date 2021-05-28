@@ -88,9 +88,12 @@ namespace SekerWeb.Controllers
         {
            var hekimİD=(int)Session["HekimİD"];
            var hastaİD= (int)Session["HastaiD"];
+           
             m.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            m.HastaİD = hastaİD;
             m.HekimİD = hekimİD;
             m.Gonderen = hekimİD;
+            
             db.Mesaj.Add(m);
             db.SaveChanges();
             return View();
